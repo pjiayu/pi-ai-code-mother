@@ -1,9 +1,11 @@
 package com.ppp.piaicodemother;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.ppp.piaicodemother.mapper")
 public class PiAiCodeMotherApplication {
 
     public static void main(String[] args) {
