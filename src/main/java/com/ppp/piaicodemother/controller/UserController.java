@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 用户 控制层。
+ * 用户控制层。
  *
  * @author <a href="https://github.com/pjiayu">程序员皮皮皮</a>
  */

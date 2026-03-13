@@ -33,8 +33,14 @@ public class User implements Serializable {
     /**
      * id
      */
+    /**
+     * 使用雪花算法生成ID
+     * @Id 注解用于标识主键字段
+     * keyType 设置为KeyType.Generator，表示使用生成器策略
+     * value 指定使用雪花算法生成器(KeyGenerators.snowFlakeId)来生成ID值
+     */
     @Id(keyType = KeyType.Generator,value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private Long id; // 主键ID，使用雪花算法生成
 
     /**
      * 账号

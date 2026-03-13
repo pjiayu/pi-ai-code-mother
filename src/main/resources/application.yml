@@ -7,14 +7,15 @@ spring:
     url: jdbc:mysql://localhost:3306/pi_ai_code_mother
     username: root
     password: pjy20031207
-
+  profiles:
+    active: local
 
 server:
   port: 8123
   servlet:
     context-path: /api
 
-# springdoc-openapi项目配置
+# springdoc-openapi项目配置,访问http://localhost:8123/api/doc.html
 springdoc:
   #  swagger-ui和  api-docs默认路径
   swagger-ui:
@@ -23,11 +24,12 @@ springdoc:
     operations-sorter: alpha
   api-docs:
     path: /v3/api-docs
-
+# 组配置列表
   group-configs:
+    # 默认组配置
     - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: com.ppp.piaicodemother.controller
+      paths-to-match: '/**'  # 需要匹配的路径，使用通配符/**表示所有路径
+      packages-to-scan: com.ppp.piaicodemother.controller  # 需要扫描的包路径，用于扫描相关的组件
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
   enable: true
