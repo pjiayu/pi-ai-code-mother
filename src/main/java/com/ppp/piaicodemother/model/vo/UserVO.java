@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 脱敏后的用户信息
+ *
  * @author 皮皮皮
  * @date 2025-12-18 11:43
  */
