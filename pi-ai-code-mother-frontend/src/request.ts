@@ -1,14 +1,11 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
+import { API_BASE_URL } from '@/config/env'
 
 // 创建 Axios 实例
-// 创建一个axios实例，用于发送HTTP请求
 const myAxios = axios.create({
-  // 设置基础URL，所有请求都会基于此URL
-  baseURL: 'http://localhost:8123/api',
-  // 设置请求超时时间为60秒（60000毫秒）
+  baseURL: API_BASE_URL,
   timeout: 60000,
-  // 表示跨域请求时是否需要使用凭证（cookies、authorization headers等）
   withCredentials: true,
 })
 
