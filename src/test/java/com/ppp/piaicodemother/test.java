@@ -9,9 +9,31 @@ import java.util.*;
  */
 public class test {
     public static void main(String[] args) {
-        int[] nums ={2,7,11,15};
+//        Set<String> hs = new HashSet<>();
+//        hs.add("a");
+//        hs.add("b");
+//        for(String s:hs){
+//            System.out.println(s);
+//        }
+//        System.out.println("------------------------------------------------");
+//
+//        List<Integer> list =  new LinkedList<>(Arrays.asList(4,6,2,8,1));
+//        list.add(3);
+//        list.removeLast();
+//        list.getFirst();
+//        list.addFirst(5);
+//        System.out.println(list.get(2));
+//        List<Integer> l = list.subList(0,2);
+//
+//        for(int i:l){
+//            System.out.println(i);
+//        }
 
-        int target = 9;
+
+
+
+
+
     }
 
 
