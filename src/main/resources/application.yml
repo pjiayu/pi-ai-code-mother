@@ -6,14 +6,54 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/pi_ai_code_mother
     username: root
-    password: pjy20031207
+    password: <Your Password>
   profiles:
     active: local
+
+  # redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      ttl: 3600  #redis的过期时间
+
+  # session 配置,存入redis
+  session:
+    store-type: redis  #保存session到redis，默认是内存
+    # session 30 天过期
+    timeout: 2592000
 
 server:
   port: 8123
   servlet:
     context-path: /api
+    # cookie 30 天过期
+    session:
+      cookie:
+        max-age: 2592000
+
+# AI
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: https://api.deepseek.com
+      api-key: <Your API>
+      model-name: deepseek-chat
+      log-requests: true
+      log-responses: true
+      max-tokens: 8192
+      strict-json-schema: true    #严格返回json格式
+      response-format: json_object
+
+    streaming-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: <Your API>
+      model-name: deepseek-chat
+      max-tokens: 8192
+      log-requests: true
+      log-responses: true
+
 
 # springdoc-openapi项目配置,访问http://localhost:8123/api/doc.html
 springdoc:
