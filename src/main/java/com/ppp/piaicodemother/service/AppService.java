@@ -2,6 +2,7 @@ package com.ppp.piaicodemother.service;
 
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
+import com.ppp.piaicodemother.model.dto.app.AppAddRequest;
 import com.ppp.piaicodemother.model.dto.app.AppQueryRequest;
 import com.ppp.piaicodemother.model.entity.App;
 import com.ppp.piaicodemother.model.entity.User;
@@ -28,6 +29,16 @@ public interface AppService extends IService<App> {
      */
     Flux<String> chatToGenCode(Long appId, String message, User loginUser);
 
+
+    /**
+     * 创建应用
+     *
+     * @param appAddRequest
+     * @param loginUser
+     * @return
+     */
+    Long createApp(AppAddRequest appAddRequest, User loginUser);
+
     /**
      * 应用部署
      *
@@ -36,6 +47,14 @@ public interface AppService extends IService<App> {
      * @return 可访问的部署地址
      */
     String deployApp(Long appId, User loginUser);
+
+    /**
+     * 异步生成应用截图并更新封面
+     *
+     * @param appId  应用ID
+     * @param appUrl 应用访问URL
+     */
+    void generateAppScreenshotAsync(Long appId, String appUrl);
 
     /**
      * 获取应用封装类
