@@ -141,6 +141,7 @@ public class AiCodeGeneratorFacade {
     private Flux<String> processCodeStream(Flux<String> codeStream, CodeGenTypeEnum codeGenType, Long appId) {
         // 字符串拼接器，用于当流式返回所有的代码之后，再保存代码
         StringBuilder codeBuilder = new StringBuilder();
+        //map通常对flux流的chunk进行改变处理，可以改变原chunk内容，doonnext不改变内容，只是做附加操作
         return codeStream.doOnNext(chunk -> {
             // 实时收集代码片段
             codeBuilder.append(chunk);
@@ -150,7 +151,7 @@ public class AiCodeGeneratorFacade {
                 String completeCode = codeBuilder.toString();
                 // 使用执行器解析代码
                 Object parsedResult = CodeParserExecutor.executeParser(completeCode, codeGenType);
-                // 使用执行器保存代码
+                // 使用执行器保存代码到目录中 ，不是保存到对话历史
                 File saveDir = CodeFileSaverExecutor.executeSaver(parsedResult, codeGenType, appId);
                 log.info("保存成功，目录为：{}", saveDir.getAbsolutePath());
             } catch (Exception e) {

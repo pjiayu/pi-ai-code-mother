@@ -94,7 +94,9 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
         chatHistoryService.addChatMessage(appId, message, ChatHistoryMessageTypeEnum.USER.getValue(), loginUser.getId());
         // 6. 调用 AI 生成代码（流式）
         Flux<String> codeStream = aiCodeGeneratorFacade.generateAndSaveCodeStream(message, codeGenTypeEnum, appId);
-        // 7. 收集 AI 响应的内容，并且在完成后保存记录到对话历史
+        // 7. 收集 AI 响应的内容，并且在完成后保存记录到对话历史数据库中
+        // (前面file和mul_file已经通过保存期保存到文件夹里，vue项目通过工具写入文件夹里了，这里是保存数据库)
+        //但是这里vue项目的处理器里面除了保存原项目代码外，还额外使用core/builder下的构建器执行了vue项目的构建操作，和后面的部署接口重复了
         return streamHandlerExecutor.doExecute(codeStream, chatHistoryService, appId, loginUser, codeGenTypeEnum);
     }
     @Override

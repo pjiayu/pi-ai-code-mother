@@ -29,6 +29,7 @@ public class SimpleTextStreamHandler {
                                ChatHistoryService chatHistoryService,
                                long appId, User loginUser) {
         StringBuilder aiResponseBuilder = new StringBuilder();
+        //map通常对flux流的chunk进行改变处理，可以改变原chunk内容，doonnext不改变内容，只是做附加操作
         return originFlux
                 .map(chunk -> {
                     // 收集AI响应内容

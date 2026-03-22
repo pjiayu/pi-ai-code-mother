@@ -3,6 +3,7 @@ package com.ppp.piaicodemother.ai;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.ppp.piaicodemother.ai.tools.FileWriteTool;
+import com.ppp.piaicodemother.ai.tools.ToolManager;
 import com.ppp.piaicodemother.exception.BusinessException;
 import com.ppp.piaicodemother.exception.ErrorCode;
 import com.ppp.piaicodemother.model.enums.CodeGenTypeEnum;
@@ -45,6 +46,9 @@ public class AiCodeGeneratorServiceFactory {
 
     @Resource
     private ChatHistoryService chatHistoryService;
+
+    @Resource
+    private ToolManager toolManager;
 
     /**
      * AI 服务实例缓存
@@ -108,7 +112,7 @@ public class AiCodeGeneratorServiceFactory {
                     .chatModel(chatModel)
                     .streamingChatModel(reasoningStreamingChatModel)
                     .chatMemoryProvider(memoryId -> chatMemory)
-                    .tools(new FileWriteTool())
+                    .tools(toolManager.getAllTools())
                     // 处理工具调用幻觉问题
                     .hallucinatedToolNameStrategy(toolExecutionRequest ->
                             ToolExecutionResultMessage.from(toolExecutionRequest,
